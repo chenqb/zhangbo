@@ -99,6 +99,28 @@
     return cell;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0 && indexPath.row ==0 ){
+        NSLog(@"0 0 推荐给朋友");
+        NSString *textToShare = @"share string";
+    	UIImage *imageToShare = [UIImage imageNamed:@"contact_selected"];
+        NSURL *urlToShare = [NSURL URLWithString:@"http://www.163.com"];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[textToShare,urlToShare,imageToShare] applicationActivities:nil];
+        
+        // 根据需要指定不需要分享的平台
+        activityVC.excludedActivityTypes = @[UIActivityTypePostToTwitter,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeAddToReadingList,UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop,UIActivityTypeSaveToCameraRoll];
+        // >=iOS8.0系统用这个方法
+        activityVC.completionWithItemsHandler = ^(NSString *activityType,BOOL completed,NSArray *returnedItems,NSError *activityError) {
+            if (completed) { // 确定分享
+            }else {
+            }
+        };
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+    
+}
 /*
 #pragma mark - Navigation
 
