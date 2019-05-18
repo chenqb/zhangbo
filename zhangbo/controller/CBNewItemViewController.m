@@ -45,9 +45,10 @@
     
     UIButton *dateSelectBtn = [[UIButton alloc] init];
     [superView addSubview:dateSelectBtn];
+    int statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
     [dateSelectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(20);
-        make.height.mas_equalTo(40);
+        make.top.mas_equalTo(statusBarHeight);
+        make.height.mas_equalTo(44);
         make.width.mas_equalTo(260);
         make.centerX.equalTo(superView.mas_centerX);
     }];
@@ -73,7 +74,7 @@
         make.centerY.mas_equalTo(dateSelectBtn);
         make.height.mas_equalTo(20);
         make.width.mas_equalTo(40);
-        make.right.equalTo(superView).with.offset(-8);
+        make.right.equalTo(superView).with.offset(-10);
     }];
 
     

@@ -47,6 +47,7 @@
     mainTabBar.frame = self.tabBar.bounds;
     mainTabBar.delegate = self;
     [self.tabBar addSubview:mainTabBar];
+    [self.tabBar setBarTintColor:[UIColor whiteColor]];
     _mainTabBar = mainTabBar;
 }
 

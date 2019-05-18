@@ -32,7 +32,8 @@
     UIView *superView = self.view;
     
     UIView *navView = [[UIView alloc] init];
-    navView.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    int statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    navView.frame = CGRectMake(0, 0, self.view.frame.size.width, statusBarHeight+44);
     navView.backgroundColor = [UIColor colorWithHexString:kThemeColor];
     [self.view addSubview:navView];
     
@@ -42,10 +43,10 @@
     title.text = @"联系人";
     [navView addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(navView.mas_top).with.offset(20);
+        make.bottom.mas_equalTo(navView);
         make.centerX.mas_equalTo(navView);
         make.width.mas_equalTo(60);
-        make.height.mas_equalTo(40);
+        make.height.mas_equalTo(44);
     }];
     
     UIButton *dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -58,12 +59,12 @@
     [dismissBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(title);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(40);
+        make.width.mas_equalTo(44);
         make.right.equalTo(navView).with.offset(-10);
     }];
 
     [self refreshData];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height-60) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, statusBarHeight+44, self.view.frame.size.width, self.view.frame.size.height-60) style:UITableViewStylePlain];
     tableView.backgroundColor = [UIColor colorWithHexString:kGrayColor];
     tableView.delegate = self;
     tableView.dataSource = self;
