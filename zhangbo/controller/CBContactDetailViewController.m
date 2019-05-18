@@ -170,7 +170,7 @@
 -(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     
     UILabel *label=(UILabel*)recognizer.view;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"备注" message:label.text preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:label.text message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"朕知道了" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
