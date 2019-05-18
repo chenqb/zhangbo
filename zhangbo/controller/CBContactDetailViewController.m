@@ -112,6 +112,14 @@
     };
     cell.dateLbl.text = [Util getDateStringFromDate:record.date];
     cell.descLbl.text = record.desc;
+   
+    // 添加点击事件
+    cell.descLbl.userInteractionEnabled = YES;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    
+    [cell.descLbl addGestureRecognizer:labelTapGestureRecognizer];
+    
+    
     [cell.channelImg setImage:img];
     [cell.channeLbl setText:channelStr];
     [cell.amountLbl setText:[NSString stringWithFormat:@"%d",record.amount]];
@@ -157,6 +165,15 @@
         
     }];
     return @[action2,action1];
+}
+
+-(void)labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+    
+    UILabel *label=(UILabel*)recognizer.view;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"备注" message:label.text preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"朕知道了" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (NSMutableArray *)recordList{
